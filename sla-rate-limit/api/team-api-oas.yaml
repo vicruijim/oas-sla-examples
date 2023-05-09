@@ -1,0 +1,155 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Team API
+  description: Team api 
+  x-sla:
+    $ref: ./team-api-plans.yaml
+security:
+  - BearerAuth: []
+paths:
+  /api/v1/teams:
+    x-router-controller: teamsController
+    get:
+      description: Returns all teams
+      operationId: getTeams
+      responses:
+        200:
+          description: Team list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/team'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    post:
+      description: Creates a new team
+      operationId: addTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/team'
+        description: Team to be created
+        required: true
+      responses:
+        201:
+          description: Team
+        default:
+            description: Unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/error'
+                  
+  /api/v1/teams/{id}:
+    x-router-controller: teamsController
+    get:
+      description: Returns a single team by its id
+      operationId: findByid
+      parameters:
+        - required: true
+          name: id
+          description: id of the team to fetch
+          in: path
+          schema:
+            type: number
+      responses:
+        200:
+          description: Team found by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    put:
+      description: Update a team based on its id
+      operationId: updateTeam
+      parameters:
+        - required: true
+          name: id
+          description: id of the team to update
+          in: path
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/team'
+        description: Team to be updated
+        required: true
+      responses:
+        '204':
+          description: Team updated
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+    delete:
+      description: Deletes a single team based on its id
+      operationId: deleteTeam
+      parameters:
+        - required: true
+          name: id
+          description: id of the team to delete
+          in: path
+          schema:
+            type: number
+      responses:
+        '204':
+          description: Team deleted
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    team:
+        type: object
+        required:
+          - id
+        properties:
+          id:
+            type: number
+          name:
+            type: string
+          code:
+            type: string
+          country:
+            type: string
+          founded:
+            type: number
+          national:
+            type: boolean
+          logo:
+            type: string
+    error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+      additionalProperties: true
