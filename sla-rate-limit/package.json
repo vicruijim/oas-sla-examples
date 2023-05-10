@@ -9,7 +9,7 @@
     "scripts": {
         "prestart": "npm install",
         "start": "node -r dotenv/config index.js",
-        "showcase": "node showcase/slatest.js"
+        "showcase": "node -r dotenv/config showcase/slatest.js"
     },
     "dependencies": {
         "@oas-tools/auth": "^1.1.0",
