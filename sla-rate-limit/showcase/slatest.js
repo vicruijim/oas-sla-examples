@@ -5,8 +5,8 @@ function myUrlBuilder(){
     return "http://localhost:8080/api/v1/teams";
 }
 
-function myRequestBuilder(){
-    const token = jwt.sign({plan: "base"}, process.env.JWT_SECRET, {issuer: process.env.JWT_ISSUER});
+function myRequestBuilder(user){
+    const token = jwt.sign({plan: "base", apikey: user}, process.env.JWT_SECRET, {issuer: process.env.JWT_ISSUER});
     
     return {
         options : {
@@ -19,7 +19,8 @@ function myRequestBuilder(){
 function myResultsHandler(results){
     console.log("Test result:");
     console.log(JSON.stringify(results.summary, null, 2));
-    console.log(JSON.stringify(results.lotStats?.flatMap(o => o.result.stats.map(s => `${o.id}-${s.id}-${s.statusCode}`)), null, 2));
+    console.log(JSON.stringify(results.lotStats?.flatMap(o => o.result.stats.map(s => `Iteration: ${o.id} - User: ${s.id} => Response Status: ${s.statusCode}`)), null, 2));
+
 }
 
 run({

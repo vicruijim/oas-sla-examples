@@ -8,7 +8,7 @@ if (!process.env.JWT_ISSUER || !process.env.JWT_SECRET) {
 
 export default {
     packageJSON: "package.json",
-    oasFile: "api/team-api-oas.yaml",
+    oasFile: "api/oas-doc.yaml",
     useAnnotations: false,
     logger: {
         customLogger: null,
@@ -28,5 +28,7 @@ export default {
 }
 
 function _customHandler(err, send) {
-    if (err.name === "JsonWebTokenError") send(403);
+    if (err.name === "JsonWebTokenError") {
+        send(403);
+    }
 }

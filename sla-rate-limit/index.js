@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json({limit: '50mb'}));
 
 use(SLARateLimit, {
-    slaFile: "api/team-api-plans.yaml",
+    slaFile: "api/plans.yaml",
     scheme: "BearerAuth"
 }, 2);
 

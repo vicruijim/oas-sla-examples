@@ -4,7 +4,7 @@ info:
   title: Team API
   description: Team api 
   x-sla:
-    $ref: ./team-api-plans.yaml
+    $ref: ./plans.yaml
 security:
   - BearerAuth: []
 paths:
