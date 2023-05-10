@@ -5,6 +5,7 @@ This is a minimal example of the use of the sla-rate-limit library.
 ## Run showcase
 Execute the following commands:
 ```sh
+cp .env_sample .env
 npm start
 npm run showcase
 ```
