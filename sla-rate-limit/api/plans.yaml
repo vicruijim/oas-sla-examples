@@ -12,13 +12,13 @@ plans:
   base:
     availability: R/00:00:00Z/23:59:59Z
     rates:
-      '/api/v1/teams':
+      '/api/v1/phones':
         post:
           requests:
             - max: 1
               period: second
     quotas:
-      '/api/v1/teams':
+      '/api/v1/phones':
         get:
           requests:
             - max: 20
@@ -29,13 +29,13 @@ plans:
       currency: USD
       billing: monthly
     rates:
-      '/api/v1/teams':
+      '/api/v1/phones':
         post:
           requests:
             - max: 2
               period: second
     quotas:
-      '/api/v1/teams':
+      '/api/v1/phones':
         get:
           requests:
             - max: 30

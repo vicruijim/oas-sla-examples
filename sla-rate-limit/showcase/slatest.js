@@ -2,7 +2,7 @@ import { run } from "apipecker";
 import jwt from "jsonwebtoken";
 
 function myUrlBuilder(){
-    return "http://localhost:8080/api/v1/teams";
+    return "http://localhost:8080/api/v1/phones";
 }
 
 function myRequestBuilder(user){
